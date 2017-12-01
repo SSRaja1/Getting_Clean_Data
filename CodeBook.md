@@ -13,6 +13,7 @@
  ### Prerequisite for the program
   Prior to executing the R program, make sure package dplyr is installed. If not get the package installed
         install.packages("dplyr")
+        install.packages("magrittr")
  
  ### Data Transformation Walk Through
   This section provides a walkthrough  on how does tidyData.R transforms the data

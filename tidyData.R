@@ -1,4 +1,9 @@
+## Install and load required packages
+install.packages("magrittr")
+install.packages("dplyr")
+
 library("dplyr")
+library(magrittr)
 
 setwd("E:/Data Science/Coursera/Work Space/R Program/Cleaning Data/Final1")
 filename <- "getdata_dataset.zip"
@@ -33,6 +38,15 @@ test_measure_df <-read.table("UCI HAR Dataset/test/X_test.txt")
 feature_df[,2]<-gsub("[()-]","",feature_df[,2])
 feature_df[,2]<-gsub("mean","Mean",feature_df[,2])
 feature_df[,2]<-gsub("std","Std",feature_df[,2])
+feature_df[,2] <- gsub("^f", "frequencyDomain", feature_df[,2])
+feature_df[,2] <- gsub("^t", "timeDomain", feature_df[,2])
+feature_df[,2] <- gsub("Acc", "Accelerometer", feature_df[,2])
+feature_df[,2] <- gsub("Gyro", "Gyroscope", feature_df[,2])
+feature_df[,2] <- gsub("Mag", "Magnitude", feature_df[,2])
+feature_df[,2] <- gsub("Freq", "Frequency", feature_df[,2])
+feature_df[,2] <- gsub("mean", "Mean", feature_df[,2])
+feature_df[,2] <- gsub("std", "StandardDeviation", feature_df[,2])
+
 Name<-c("Subject","Activity")
 Name1<- as.character(feature_df[,2])
 Name<- c(Name,Name1)
@@ -48,7 +62,7 @@ names(test_activity_df)<-c("ID")
 test_activity_df_1<-left_join(test_activity_df,activity_df,by="ID")
 
 #Combine Subject,Activity,Measure data for Train group and assign column names
-train_df<-train_subject_df
+train_df<-train_subject_df
 train_df[,2]<-train_activity_df_1[,2]
 train_df[,3:563]<-train_measure_df
 names(train_df)<-Name
@@ -63,5 +77,7 @@ names(test_df)<-Name
 all_df<-rbind(test_df,train_df)
 tidy_df<-all_df[,Name_pos]
 
+Summarized_df <- tidy_df %>%   group_by(Subject, Activity) %>%  summarise_each(funs(mean))
+
 #Export tidy data into a seperate file
-write.table(tidy_df, "tidy.txt", row.names = FALSE, quote = FALSE)
+write.table(Summarized_df, "tidy.txt", row.names = FALSE, quote = FALSE)
