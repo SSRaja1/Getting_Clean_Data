@@ -5,7 +5,7 @@ to fetch and clean up the data set and make it ready to use for analysis
 This repository contains the  following
 1.  README.MD => this file provides overview of this repo and its contents
 2.  CodeBook.md => this file, provides a detailed description of the R programme tidyData.R and how it transforms raw data into analysis-ready dataset
-3.  tidyData.R => this R file contains the code which  transforms the raw data
+3.  run_analysis.R => this R file contains the code which  transforms the raw data
 4.  tidy.txt =>this is the transformed sub-set of data using  R programme tidyData.R
 
 ## Study Guide
