@@ -1,4 +1,4 @@
-#Coursera Getting and Cleaning Data course project
+# Coursera Getting and Cleaning Data course project
 Each analysis needs to have a tidy data. This course provides an example of how
 to fetch and clean up the data set and make it ready to use for analysis
 
